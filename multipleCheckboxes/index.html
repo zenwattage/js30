@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Multiple Checkboxes!</title>
+</head>
+
+<body>
+
+
+    <div class="inbox">
+        <div class="item">
+            <input type="checkbox">
+            <p>Check this box!</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Check this box!</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Check this box!</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Check this box!</p>
+        </div>
+        <div class="item">
+            <input type="checkbox">
+            <p>Check this box!</p>
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"] ');
+
+        let lastChecked;
+
+        function handleCheck(e) {
+            //check for shift key
+            // and check for checking box
+
+            let inBetween = false;
+
+            if (e.shiftKey && this.checked) {
+                //loop over all checkboxes to find first box checked
+                checkboxes.forEach(checkbox => {
+                    console.log(checkbox);
+                    //check for bottom to top or top to bottom
+                    if (checkbox === this || checkbox === lastChecked) {
+                        inBetween = !inBetween; //flag variable set to false
+                        console.log('Checking in between');
+
+                    }
+
+                    if (inBetween) {
+                        checkbox.checked = true;
+                    }
+
+                });
+
+            }
+
+
+            lastChecked = this;
+
+
+        }
+
+        checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+    </script>
+
+
+</body>
+
+</html>
